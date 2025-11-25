@@ -54,7 +54,7 @@ export function AudioPlayer({ audioUrl, title, onEnded }) {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 bg-white/90 backdrop-blur-lg p-4 shadow-lg transition-transform duration-300 translate-y-0">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg p-4 shadow-lg transition-transform duration-300 translate-y-0">
       <div className="container mx-auto flex items-center justify-between gap-4 max-w-3xl">
         <div className="flex items-center gap-4">
           <button
@@ -68,13 +68,13 @@ export function AudioPlayer({ audioUrl, title, onEnded }) {
             )}
           </button>
           <div className="hidden sm:block">
-            <p className="text-sm font-medium text-slate-900">Now Playing</p>
-            <p className="text-xs text-slate-500 truncate max-w-[200px]">{title}</p>
+            <p className="text-sm font-medium text-slate-900 dark:text-white">Now Playing</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 truncate max-w-[200px]">{title}</p>
           </div>
         </div>
 
         <div className="flex-1 mx-4">
-          <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+          <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
             <div
               className="absolute top-0 left-0 h-full bg-primary transition-all duration-100"
               style={{ width: `${progress}%` }}
@@ -84,7 +84,7 @@ export function AudioPlayer({ audioUrl, title, onEnded }) {
 
         <button
           onClick={toggleMute}
-          className="p-2 text-slate-400 hover:text-slate-600 transition-colors"
+          className="p-2 text-slate-400 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
         >
           {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
         </button>

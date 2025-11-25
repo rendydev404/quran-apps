@@ -52,6 +52,35 @@ export default function PrayerTimes() {
     fetchData();
   }, [location.lat, location.long]);
 
+  const [compassHeading, setCompassHeading] = useState(0);
+
+  useEffect(() => {
+    const handleOrientation = (event) => {
+      let heading = event.alpha;
+      
+      // iOS devices require webkitCompassHeading
+      if (event.webkitCompassHeading) {
+        heading = event.webkitCompassHeading;
+      }
+      
+      setCompassHeading(heading);
+    };
+
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", handleOrientation, true);
+    }
+
+    return () => {
+      window.removeEventListener("deviceorientation", handleOrientation, true);
+    };
+  }, []);
+
+  // Calculate rotation: Qibla direction relative to North - Device heading relative to North
+  // Example: Qibla is 295 (West-North). Phone faces North (0). Needle should point 295.
+  // Phone faces West (270). Needle should point 25 (Right).
+  // Rotation = qibla.direction - compassHeading
+  const needleRotation = qibla ? qibla.direction - compassHeading : 0;
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20 transition-colors duration-300">
       {/* Header */}
@@ -65,7 +94,7 @@ export default function PrayerTimes() {
             <span className="font-medium">Back</span>
           </Link>
           
-          <h1 className="text-lg font-bold text-slate-900 dark:text-white">Prayer Times & Qibla</h1>
+          <h1 className="text-lg font-bold text-slate-900 dark:text-white">Waktu Sholat & Arah Kiblat</h1>
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
@@ -112,32 +141,40 @@ export default function PrayerTimes() {
                 <p className="text-slate-500 dark:text-slate-400">
                   {qibla?.direction.toFixed(2)}° dari Utara
                 </p>
+                <p className="text-xs text-primary font-medium mt-1">
+                  Putar HP Anda untuk mencari arah
+                </p>
               </div>
 
               <div className="relative h-64 w-64">
                 {/* Compass Circle */}
-                <div className="absolute inset-0 rounded-full border-4 border-slate-200 dark:border-slate-700"></div>
+                <div className="absolute inset-0 rounded-full border-4 border-slate-200 dark:border-slate-700 transition-transform duration-200 ease-out"
+                     style={{ transform: `rotate(${-compassHeading}deg)` }}>
+                    {/* North Marker on the Ring */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-3 font-bold text-slate-400">N</div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-3 font-bold text-slate-400">S</div>
+                    <div className="absolute left-0 top-1/2 -translate-x-3 -translate-y-1/2 font-bold text-slate-400">W</div>
+                    <div className="absolute right-0 top-1/2 translate-x-3 -translate-y-1/2 font-bold text-slate-400">E</div>
+                </div>
                 
-                {/* North Marker */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-xs font-bold">N</div>
-
-                {/* Kaaba Icon / Direction Indicator */}
+                {/* Kaaba Direction Needle (Points to Qibla relative to North) */}
+                {/* We rotate the whole container based on needleRotation */}
                 <div 
-                  className="absolute inset-0 flex items-center justify-center transition-transform duration-1000 ease-out"
-                  style={{ transform: `rotate(${qibla?.direction}deg)` }}
+                  className="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-out"
+                  style={{ transform: `rotate(${needleRotation}deg)` }}
                 >
                   <div className="relative h-full w-1 bg-gradient-to-t from-transparent via-primary/20 to-transparent">
                     <div className="absolute top-4 left-1/2 -translate-x-1/2">
-                      <div className="h-12 w-12 bg-black rounded-lg flex items-center justify-center border-2 border-yellow-500 shadow-lg">
+                      <div className="h-12 w-12 bg-black rounded-lg flex items-center justify-center border-2 border-yellow-500 shadow-lg shadow-primary/20">
                         <div className="h-8 w-8 border border-yellow-500/50 rounded"></div>
                       </div>
-                      <div className="mt-2 text-xs font-bold text-primary whitespace-nowrap">Kiblat</div>
+                      <div className="mt-2 text-xs font-bold text-primary whitespace-nowrap bg-white dark:bg-slate-900 px-2 py-0.5 rounded-full shadow-sm">Kiblat</div>
                     </div>
                   </div>
                 </div>
                 
                 {/* Center Point */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 bg-slate-900 dark:bg-white rounded-full border-4 border-slate-100 dark:border-slate-800"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 bg-slate-900 dark:bg-white rounded-full border-4 border-slate-100 dark:border-slate-800 z-10"></div>
               </div>
               
               <p className="mt-8 text-xs text-slate-400 max-w-xs">
