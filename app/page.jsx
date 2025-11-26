@@ -50,9 +50,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20 transition-colors duration-300">
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl transition-colors duration-300">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
@@ -74,6 +74,8 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-2">
+
+
             <Link href="/jadwal-sholat" className="rounded-full p-2 text-slate-500 hover:bg-slate-100 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" title="Prayer Times">
                <Clock className="h-5 w-5" />
             </Link>
@@ -104,6 +106,45 @@ export default function Home() {
             <span className="text-primary">Al-Quran</span> Online
           </h1>
           <p className="text-slate-500 dark:text-slate-400">Read, listen, and understand the Holy Quran</p>
+        </div>
+
+        {/* Features */}
+        <div className="mb-10 grid gap-6 md:grid-cols-2">
+          <Link
+            href="/hadith"
+            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-600 p-6 text-white shadow-lg transition-all hover:shadow-xl hover:shadow-emerald-500/20"
+          >
+            <div className="relative z-10">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
+                <BookOpen className="h-6 w-6 text-white" />
+              </div>
+              <h2 className="mb-1 text-2xl font-bold">Kumpulan Hadits</h2>
+              <p className="text-emerald-100">
+                Baca hadits shahih dari 9 perawi
+              </p>
+            </div>
+            
+            {/* Decorative Pattern */}
+            <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-full bg-white/10 blur-2xl transition-transform duration-500 group-hover:scale-150" />
+          </Link>
+
+          <Link
+            href="/jadwal-sholat"
+            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-500 to-purple-600 p-6 text-white shadow-lg transition-all hover:shadow-xl hover:shadow-violet-500/20"
+          >
+            <div className="relative z-10">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
+                <Clock className="h-6 w-6 text-white" />
+              </div>
+              <h2 className="mb-1 text-2xl font-bold">Jadwal Sholat</h2>
+              <p className="text-violet-100">
+                Cek waktu sholat di lokasimu
+              </p>
+            </div>
+            
+            {/* Decorative Pattern */}
+            <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-full bg-white/10 blur-2xl transition-transform duration-500 group-hover:scale-150" />
+          </Link>
         </div>
 
         {loading ? (

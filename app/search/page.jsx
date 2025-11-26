@@ -109,7 +109,7 @@ function SearchContent() {
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                   {match.text.split(new RegExp(`(${query})`, "gi")).map((part, i) => 
                     part.toLowerCase() === query.toLowerCase() ? (
-                      <span key={i} className="bg-primary/20 text-primary font-bold px-0.5 rounded">
+                      <span key={i} className="bg-yellow-400 text-primary px-0.5 rounded">
                         {part}
                       </span>
                     ) : (
