@@ -4,7 +4,6 @@ import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { ArrowLeft, Search, Loader2, ChevronLeft, ChevronRight, Hash, ArrowUp } from "lucide-react";
 import { ThemeToggle } from "../../../components/ThemeToggle";
-import { SettingsDrawer } from "../../../components/SettingsDrawer";
 import { HadithCard } from "../../../components/HadithCard";
 
 export default function BookPage({ params }) {
@@ -142,7 +141,6 @@ export default function BookPage({ params }) {
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <SettingsDrawer />
           </div>
         </div>
       </header>

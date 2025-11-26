@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { ArrowLeft, MapPin, Compass, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "../../components/ThemeToggle";
-import { SettingsDrawer } from "../../components/SettingsDrawer";
 
 export default function PrayerTimes() {
   const [prayerTimes, setPrayerTimes] = useState(null);
@@ -98,7 +97,6 @@ export default function PrayerTimes() {
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <SettingsDrawer />
           </div>
         </div>
       </header>

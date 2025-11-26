@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Search, Loader2, BookOpen, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "../../components/ThemeToggle";
-import { SettingsDrawer } from "../../components/SettingsDrawer";
 
 function SearchContent() {
   const searchParams = useSearchParams();
@@ -56,7 +55,6 @@ function SearchContent() {
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <SettingsDrawer />
           </div>
         </div>
       </header>

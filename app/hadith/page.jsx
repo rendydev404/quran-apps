@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Book, Loader2, ChevronRight } from "lucide-react";
 import { ThemeToggle } from "../../components/ThemeToggle";
-import { SettingsDrawer } from "../../components/SettingsDrawer";
 
 export default function HadithPage() {
   const [books, setBooks] = useState([]);
@@ -45,7 +44,6 @@ export default function HadithPage() {
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <SettingsDrawer />
           </div>
         </div>
       </header>

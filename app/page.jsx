@@ -3,7 +3,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BookOpen, Search, Loader2, Compass, Clock } from "lucide-react";
+import { BookOpen, Search, Loader2, Book, Clock, HeartHandshake } from "lucide-react";
 import { SurahCard } from "../components/SurahCard";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { SettingsDrawer } from "../components/SettingsDrawer";
@@ -58,7 +58,7 @@ export default function Home() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
               <BookOpen className="h-5 w-5" />
             </div>
-            <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">QuranApp</span>
+            <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">V-Quran</span>
           </div>
           
           <div className="relative w-full max-w-md hidden md:block">
@@ -103,47 +103,47 @@ export default function Home() {
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-            <span className="text-primary">Al-Quran</span> Online
+            <span className="text-primary">Al-Quran</span> Virtual
           </h1>
           <p className="text-slate-500 dark:text-slate-400">Read, listen, and understand the Holy Quran</p>
         </div>
 
         {/* Features */}
-        <div className="mb-10 grid gap-6 md:grid-cols-2">
+        <div className="mb-10 flex flex-wrap justify-center gap-8">
           <Link
             href="/hadith"
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-600 p-6 text-white shadow-lg transition-all hover:shadow-xl hover:shadow-emerald-500/20"
+            className="group flex flex-col items-center gap-3"
           >
-            <div className="relative z-10">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
-                <BookOpen className="h-6 w-6 text-white" />
-              </div>
-              <h2 className="mb-1 text-2xl font-bold">Kumpulan Hadits</h2>
-              <p className="text-emerald-100">
-                Baca hadits shahih dari 9 perawi
-              </p>
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 transition-all duration-300 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white dark:bg-emerald-500/10 dark:text-emerald-500 dark:group-hover:bg-emerald-500 dark:group-hover:text-white">
+              <Book className="h-7 w-7" />
             </div>
-            
-            {/* Decorative Pattern */}
-            <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-full bg-white/10 blur-2xl transition-transform duration-500 group-hover:scale-150" />
+            <span className="font-medium text-slate-600 dark:text-slate-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+              Hadits
+            </span>
           </Link>
 
           <Link
             href="/jadwal-sholat"
-            className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-500 to-purple-600 p-6 text-white shadow-lg transition-all hover:shadow-xl hover:shadow-violet-500/20"
+            className="group flex flex-col items-center gap-3"
           >
-            <div className="relative z-10">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
-                <Clock className="h-6 w-6 text-white" />
-              </div>
-              <h2 className="mb-1 text-2xl font-bold">Jadwal Sholat</h2>
-              <p className="text-violet-100">
-                Cek waktu sholat di lokasimu
-              </p>
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-100 text-violet-600 transition-all duration-300 group-hover:scale-110 group-hover:bg-violet-500 group-hover:text-white dark:bg-violet-500/10 dark:text-violet-500 dark:group-hover:bg-violet-500 dark:group-hover:text-white">
+              <Clock className="h-7 w-7" />
             </div>
-            
-            {/* Decorative Pattern */}
-            <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-full bg-white/10 blur-2xl transition-transform duration-500 group-hover:scale-150" />
+            <span className="font-medium text-slate-600 dark:text-slate-300 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+              Jadwal Sholat
+            </span>
+          </Link>
+
+          <Link
+            href="/doa"
+            className="group flex flex-col items-center gap-3"
+          >
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-100 text-amber-600 transition-all duration-300 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white dark:bg-amber-500/10 dark:text-amber-500 dark:group-hover:bg-amber-500 dark:group-hover:text-white">
+              <HeartHandshake className="h-7 w-7" />
+            </div>
+            <span className="font-medium text-slate-600 dark:text-slate-300 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+              Doa
+            </span>
           </Link>
         </div>
 
