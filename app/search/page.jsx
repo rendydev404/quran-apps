@@ -20,7 +20,7 @@ function SearchContent() {
 
     setLoading(true);
     try {
-      const res = await fetch(`http://api.alquran.cloud/v1/search/${query}/all/id.indonesian`);
+      const res = await fetch(`https://api.alquran.cloud/v1/search/${query}/all/id.indonesian`);
       const data = await res.json();
       if (data.code === 200) {
         setResults(data.data);
